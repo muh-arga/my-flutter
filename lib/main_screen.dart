@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter/done_tourism_list.dart';
-import 'package:my_flutter/model/tourism_place.dart';
+import 'package:my_flutter/provider/done_tourism_provider.dart';
 import 'package:my_flutter/tourism_list.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -11,8 +12,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<TourismPlace> doneTourismPlaceList = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,15 +24,19 @@ class _MainScreenState extends State<MainScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  return DoneTourismList(
-                      doneTourismPlaceList: doneTourismPlaceList);
+                  return Consumer<DoneTourismProvider>(
+                    builder: (context, DoneTourismProvider data, widget) {
+                      return DoneTourismList(
+                          doneTourismPlaceList: data.doneTourismPlaceList);
+                    },
+                  );
                 }),
               );
             },
           )
         ],
       ),
-      body: TourismList(doneTourismPlaceList: doneTourismPlaceList),
+      body: TourismList(),
     );
   }
 }
