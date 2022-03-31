@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
-import 'package:my_flutter/model/tourism_place.dart';
+import 'package:my_flutter/data/model/tourism_place.dart';
 
 class DoneTourismProvider extends ChangeNotifier {
-  final List<TourismPlace> _doneTourismPlaceList = [];
+  final List<Place> _doneTourismPlaceList = [];
 
-  List<TourismPlace> get doneTourismPlaceList => _doneTourismPlaceList;
+  List<Place> get doneTourismPlaceList => _doneTourismPlaceList;
 
-  void complete(TourismPlace place, bool isDone) {
+  void complete(Place place, bool isDone) {
     isDone
         ? _doneTourismPlaceList.add(place)
         : _doneTourismPlaceList.remove(place);

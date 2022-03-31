@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter/create_place.dart';
 import 'package:my_flutter/done_tourism_list.dart';
 import 'package:my_flutter/provider/done_tourism_provider.dart';
 import 'package:my_flutter/tourism_list.dart';
@@ -37,6 +38,16 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       body: TourismList(),
+      floatingActionButton: FloatingActionButton(
+          child: Text('+'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return CreatePlace();
+              }),
+            );
+          }),
     );
   }
 }

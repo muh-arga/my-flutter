@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter/model/tourism_place.dart';
+import 'package:my_flutter/data/model/tourism_place.dart';
 
 class DoneTourismList extends StatelessWidget {
-  final List<TourismPlace> doneTourismPlaceList;
+  final List<Place> doneTourismPlaceList;
   const DoneTourismList({Key? key, required this.doneTourismPlaceList})
       : super(key: key);
 
@@ -14,7 +14,7 @@ class DoneTourismList extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          final TourismPlace place = doneTourismPlaceList[index];
+          final Place place = doneTourismPlaceList[index];
           return Card(
             color: Colors.white60,
             child: Row(
@@ -23,7 +23,7 @@ class DoneTourismList extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   flex: 1,
-                  child: Image.asset(place.imageAsset),
+                  child: Image.network(place.imageAsset!),
                 ),
                 Expanded(
                   flex: 2,

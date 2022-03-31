@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter/model/tourism_place.dart';
+import 'package:my_flutter/data/model/tourism_place.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key, required this.place}) : super(key: key);
 
-  final TourismPlace place;
+  final Place place;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class DetailScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: <Widget>[
-            Image.asset(place.imageAsset),
+            Image.network(place.imageAsset!),
             Container(
               margin: EdgeInsets.only(top: 16.0),
               child: Text(
@@ -29,19 +29,19 @@ class DetailScreen extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       Icon(Icons.calendar_today),
-                      Text(place.hariBuka),
+                      Text(place.openDay),
                     ],
                   ),
                   Column(
                     children: <Widget>[
                       Icon(Icons.access_time),
-                      Text(place.jamBuka),
+                      Text(place.openHour),
                     ],
                   ),
                   Column(
                     children: <Widget>[
                       Icon(Icons.attach_money),
-                      Text(place.hargaTiket),
+                      Text(place.ticketPrice),
                     ],
                   ),
                 ],
@@ -50,31 +50,25 @@ class DetailScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                place.deskripsi,
+                place.description,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16.0),
               ),
             ),
             Container(
               height: 150,
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  Padding(
+                itemBuilder: (context, index) {
+                  var galery = place.galeries[index];
+                  return Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Image.asset(place.galeri[0]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Image.asset(place.galeri[1]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Image.asset(place.galeri[2]),
-                  ),
-                ],
+                    child: Image.network(galery),
+                  );
+                },
+                itemCount: place.galeries.length,
               ),
-            )
+            ),
           ],
         ),
       ),
